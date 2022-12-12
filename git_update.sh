@@ -1,8 +1,8 @@
 #!/bin/bash
 
-read -t 30 -p "Please input file name or file list: " filenames;
+read -t 30 -e -p "Please input file name or file list: " filenames;
 
-read -t 30 -p "Please input infomation for update: " information;
+read -t 30 -e -p "Please input infomation for update: " information;
 
 if [ -z $filenames -o -z $information ]
 then
