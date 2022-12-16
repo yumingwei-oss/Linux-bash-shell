@@ -1,10 +1,10 @@
 #!/bin/bash
 
-fingerprint=`getprop ro.build.fingerprint`
-build_id=`echo $temp | cut -f 5 -d / | cut -f 1 -d :`
-model_name=`getprop ro.product.model`
-brand=`getprop ro.product.brand`
-product_device=`getprop ro.product.device`
+fingerprint=`adb shell getprop ro.build.fingerprint`
+build_id=`echo $fingerprint | cut -f 5 -d / | cut -f 1 -d :`
+model_name=`adb shell getprop ro.product.model`
+brand=`adb shell getprop ro.product.brand`
+product_device=`adb shell getprop ro.product.device`
 
 
 cat > sanity.txt <<EOF
