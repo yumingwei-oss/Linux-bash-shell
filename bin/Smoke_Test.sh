@@ -14,8 +14,8 @@ else
 	IPV6=`adb shell ip -6 addr ls wlan0 | grep inet6 | awk '{printf $2}'`
 	OEMKEY=`adb shell getprop ro.oem.key1`
 	AndroidID=`adb shell settings get secure android_id`
+	amazonVersion=`adb shell dumpsys package $(adb shell pm list packages | grep amazon | cut -f 2 -d :) | grep versionName | cut -f 2 -d =`
 fi
-
 cat >/tmp/smoke.txt <<EOF
 Clientidbase: $Clientidbase
 TierFlag: $TierFlag
@@ -25,4 +25,5 @@ MAC: $MAC
 IPV6: $IPV6
 OEMKEY: $OEMKEY
 AndroidID: $AndroidID
+Amazon Version: $amazonVersion
 EOF
