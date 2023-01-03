@@ -6,7 +6,8 @@ if [ -d "/tmp/YT2" ]
 then
 	rm -rf "/tmp/YT2" 
 else
-	cp -f ./* "/tmp/YT2"
+	mkdir '/tmp/YT2'
+	cp /tmp/YT/* /tmp/YT2	
 fi
 
 n=0
