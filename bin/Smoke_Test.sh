@@ -15,8 +15,12 @@ else
 	OEMKEY=`adb shell getprop ro.oem.key1`
 	AndroidID=`adb shell settings get secure android_id`
 	amazonVersion=`adb shell dumpsys package $(adb shell pm list packages | grep amazon | cut -f 2 -d :) | grep versionName | cut -f 2 -d =`
+	Fingerprint=`adb shell getprop ro.build.fingerprint`
+	BuildID=`echo $Fingerprint | sed -n 's/\:user.*$// p' | sed -n 's/^.*\/// p'` 
 fi
 cat >/tmp/smoke.txt <<EOF
+Fingerprint: $Fingerprint
+BuildID: $BuildID
 Clientidbase: $Clientidbase
 TierFlag: $TierFlag
 AssisTriggering: $AssistTriggering
