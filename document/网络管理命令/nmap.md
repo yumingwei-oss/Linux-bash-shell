@@ -7,8 +7,34 @@
  * 主机探测
  * 端口扫描
  * 版本检测
- * 支持脚本
+ * 操作系统探测 
 
 ## nmap使用案例
 
-> 格式 nmap 
+> 格式 nmap [Scan Type(s)] [Options] {target specification}
+
+### Target Specification 目标
+
+	扫描的目标可以是域名，ip地址，ip地址集;例如：www.baidu.com ; 192.168.1.1/24 ; 192.168.1.18等
+
+	扫描的目标来源还可以是 -iL <inputfilename> //可以在读取有host集的文件
+				
+			       -iR <num hosts>  //随机选择端口扫描，如何输入0，会无限扫描
+
+			       -exclude <host1><host2>...   //扫描除了<host1><host2>的端口或ip地址
+
+			       -excludefile  //扫描除了文件内的的端口和ip地址
+
+			       -sL   //列出扫描目标清单，但不进行扫描（为了验证是否真的进行扫描）
+
+### Nmap运行流程  
+
+	目标枚举  ---->>  主机发现  ---->> 反向DNS解析  ---->>   端口扫描  ---->>  版本侦测  ---->> OS侦测 ---->>网络路由监测
+
+	nmap提供特定的功能选项来开启或跳过跳过该阶段
+
+	#### 目标枚举 
+
+		目标列举这里就是将CIDR类解析为IP地址列表，如果有域名的话，需要进行DNS解析将域名转化为IP地址。默认情况下, Nmap 会通过 resolv.conf 文件 (Unix)和注册表 (Win32) 来确定使用的DNS解析器，会向主机上配置的域名服务器进行解析IP地址。Nmap有两个功能选项支持控制DNS解析服务器，分别为--system-dns和--dns-servers <server1>[,<server2>[,...]] ，
+ 
+	#### 
